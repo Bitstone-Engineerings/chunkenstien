@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://cmiiwyg0cadrm"]
+
+[ext_resource type="Script" uid="uid://btg1gev160wgm" path="res://area_2d.gd" id="1_3brf5"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3brf5"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 2
+script = ExtResource("1_3brf5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("WorldBoundaryShape2D_3brf5")
+
+[node name="Timer" type="Timer" parent="Area2D"]
+wait_time = 0.6
+one_shot = true
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
+[connection signal="timeout" from="Area2D/Timer" to="Area2D" method="_on_timer_timeout"]

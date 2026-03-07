@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @export var speed : float = 200.0
 @export var jump_velocity : float = -150.0
-
+@export var bullet_node:PackedScene
 @onready var animated_sprite : AnimatedSprite2D = $AnimatedSprite2D
 @onready var fists:Area2D= $fists
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -87,3 +87,12 @@ func attack():
 	await animated_sprite.animation_finished
 	fists._on_body_entered()
 	animation_locked=false
+
+func shoot():
+	var bullet=bullet_node.instantiate()
+	bullet.position=global_position
+	bullet.direction=(get_global_mouse_position()-global_position).normalized()
+
+func _input(event):
+	if event.is_action("shoot"):
+		shoot()

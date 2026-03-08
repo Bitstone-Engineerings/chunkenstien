@@ -78,7 +78,7 @@ func _on_animated_sprite_2d_animation_finished():
 
 func attack():
 	animation_player.play("attack")
-	await animated_sprite.animation_finished
+	await animation_player.animation_finished
 	animation_locked=false
 
 func shoot():

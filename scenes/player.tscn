@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://p5gc6erx210k"]
+[gd_scene load_steps=75 format=3 uid="uid://p5gc6erx210k"]
 
 [ext_resource type="Script" uid="uid://pfj7f63abido" path="res://scripts/player.gd" id="1_3vyb7"]
 [ext_resource type="Texture2D" uid="uid://dsbe51ahc22rl" path="res://assets/cultist_priest_attack_1.png" id="2_qfm1y"]
@@ -28,6 +28,8 @@
 [ext_resource type="Texture2D" uid="uid://cj1axlvfcupe6" path="res://assets/cultist_priest_walk_6.png" id="17_gl8cc"]
 [ext_resource type="Script" uid="uid://hsuafvy604" path="res://scripts/fists.gd" id="27_31cv2"]
 [ext_resource type="Script" uid="uid://mk6u8g5r3v42" path="res://scripts/facing_collision_shape_2d.gd" id="28_pf23h"]
+
+[sub_resource type="PackedScene" id="PackedScene_pf23h"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_487ah"]
 atlas = ExtResource("2_qfm1y")
@@ -600,6 +602,7 @@ size = Vector2(29.5, 83)
 
 [node name="player" type="CharacterBody2D"]
 script = ExtResource("1_3vyb7")
+bullet_node = SubResource("PackedScene_pf23h")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.5, 0.5)

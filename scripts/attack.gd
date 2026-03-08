@@ -19,7 +19,3 @@ func combo():
 func transition():
 	if owner.direction.length()>40:
 		get_parent().change_state("follow")
-
-
-func _on_sword_body_entered(body: Node2D) -> void:
-	pass # Replace with function body.

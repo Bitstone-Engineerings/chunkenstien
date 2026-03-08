@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://gyp85ycwc45r"]
+[gd_scene load_steps=65 format=3 uid="uid://gyp85ycwc45r"]
 
 [ext_resource type="Texture2D" uid="uid://j2fycxq1u7sd" path="res://assets/_Attack.png" id="1_ovrq5"]
 [ext_resource type="Script" uid="uid://cbgkldt7h0c7g" path="res://scripts/knight_boss.gd" id="1_wj73y"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://c8ikfawhw2f0m" path="res://scripts/follow.gd" id="9_8hlbv"]
 [ext_resource type="Script" uid="uid://beve76ssb87ho" path="res://scripts/attack.gd" id="10_8hlbv"]
 [ext_resource type="Script" uid="uid://dxnvigp7perwx" path="res://scripts/death.gd" id="11_8hlbv"]
+[ext_resource type="Script" uid="uid://daopesnx0rnnw" path="res://scripts/sword.gd" id="12_pgnby"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3hpkn"]
 atlas = ExtResource("1_ovrq5")
@@ -567,7 +568,11 @@ height = 40.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_183st"]
 size = Vector2(300, 300)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7q43m"]
+size = Vector2(51.875, 71.5)
+
 [node name="knight boss" type="CharacterBody2D"]
+position = Vector2(563, 286)
 collision_layer = 2
 script = ExtResource("1_wj73y")
 
@@ -617,12 +622,14 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
 value = 100.0
+metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="ui"]
 self_modulate = Color(1, 1, 1, 0)
 offset_right = 97.0
 offset_bottom = 23.0
 text = "Boss Slained"
+metadata/_edit_use_anchors_ = true
 
 [node name="debug" type="Label" parent="."]
 visible = false
@@ -633,6 +640,7 @@ offset_bottom = 16.0
 theme_override_font_sizes/font_size = 8
 text = "debug
 "
+metadata/_edit_use_anchors_ = true
 
 [node name="Finite State Machines" type="Node2D" parent="."]
 position = Vector2(-20, -11)
@@ -650,4 +658,12 @@ script = ExtResource("10_8hlbv")
 [node name="death" type="Node2D" parent="Finite State Machines"]
 script = ExtResource("11_8hlbv")
 
+[node name="sword" type="Area2D" parent="."]
+script = ExtResource("12_pgnby")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="sword"]
+position = Vector2(34.0625, 9.25)
+shape = SubResource("RectangleShape2D_7q43m")
+
 [connection signal="body_entered" from="player detection" to="Finite State Machines/idle" method="_on_player_detection_body_entered"]
+[connection signal="body_entered" from="sword" to="sword" method="_on_body_entered"]

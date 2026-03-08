@@ -27,4 +27,4 @@ func _physics_process(delta):
 	move_and_collide(velocity*delta)
 
 func take_damage():
-	health-=10
+	health-=5

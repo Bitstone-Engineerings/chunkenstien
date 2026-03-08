@@ -4,12 +4,14 @@ extends CharacterBody2D
 @export var jump_velocity : float = -150.0
 @export var bullet_node:PackedScene
 @onready var animated_sprite : AnimatedSprite2D = $AnimatedSprite2D
-@onready var fists:Area2D= $fists
+@onready var animation_player: AnimationPlayer=$AnimationPlayer
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var animation_locked : bool = false
 var direction : Vector2 = Vector2.ZERO
 var was_in_air : bool = false
+
+signal facing_direction_changed(facing_right:bool)
 
 var hp:=100:
 	set(value):
@@ -68,7 +70,8 @@ func update_facing_direction():
 		animated_sprite.flip_h = false
 	elif direction.x < 0:
 		animated_sprite.flip_h = true
-		
+		emit_signal("facing_direction_changed",!animated_sprite.flip_h)
+
 func jump():
 	velocity.y = jump_velocity
 	animated_sprite.play("jump_start")
@@ -83,9 +86,8 @@ func _on_animated_sprite_2d_animation_finished():
 		animation_locked = false
 
 func attack():
-	animated_sprite.play("attack")
+	animation_player.play("attack")
 	await animated_sprite.animation_finished
-	fists._on_body_entered()
 	animation_locked=false
 
 func shoot():

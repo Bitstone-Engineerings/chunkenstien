@@ -707,5 +707,6 @@ wait_time = 0.25
 one_shot = true
 
 [connection signal="body_entered" from="player detection" to="Finite State Machines/idle" method="_on_player_detection_body_entered"]
+[connection signal="body_entered" from="sword" to="Finite State Machines/attack" method="_on_sword_body_entered"]
 [connection signal="body_entered" from="sword" to="sword" method="_on_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

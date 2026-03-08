@@ -1,16 +1,18 @@
 extends CharacterBody2D
 
-@onready var player=get_parent().find_child("player")
+@onready var player = get_parent().find_child("player")
 @onready var animated_sprite=$AnimatedSprite2D
-@onready var progress_bar=$ui/ProgressBar
-@onready var timer:Timer=$Timer
+
 var direction: Vector2
+@onready var progress_bar = $ui/MarginContainer/VBoxContainer/ProgressBar
+@onready var timer:Timer=$Timer
 @export var knockback_speed:float= 100.0
 
 var health:=100:
 	set(value):
 		health=value
-		progress_bar.value=value
+		if progress_bar:
+			progress_bar.value = health
 		if value<=0:
 			progress_bar.visible=false
 			find_child("Finite State Machines").change_state("death")
@@ -18,7 +20,8 @@ func _ready():
 	set_physics_process(false)
 
 func _process(_delta):
-	direction=player.position-position
+	if player:
+		direction=player.position-position
 	if direction.x<0:
 		animated_sprite.flip_h=true
 	else:

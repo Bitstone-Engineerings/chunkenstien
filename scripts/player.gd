@@ -26,18 +26,18 @@ func damage():
 
 func _physics_process(delta):
 
-	if Input.is_action_just_pressed("attack"):
+	if Input.is_action_just_pressed("attack") and not animation_locked:
 		attack()
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	direction = Input.get_vector("left", "right", "up", "down")
 	
-	if direction.x != 0 && animated_sprite.animation != "jump_end":
+	if direction.x != 0:
 		velocity.x = direction.x * speed
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
-	if direction.y != 0 && animated_sprite.animation != "jump_end":
+	if direction.y != 0:
 		velocity.y = direction.y * speed
 	else:
 		velocity.y = move_toward(velocity.y, 0, speed)
@@ -48,9 +48,6 @@ func _physics_process(delta):
 	
 func update_animation():
 	if not animation_locked:
-		if not is_on_floor():
-			animated_sprite.play("jump_loop")
-		else:
 			if direction.x != 0:
 				animated_sprite.play("walk")
 			else:
@@ -63,29 +60,17 @@ func update_facing_direction():
 		animated_sprite.flip_h = true
 		emit_signal("facing_direction_changed",!animated_sprite.flip_h)
 
-func jump():
-	velocity.y = jump_velocity
-	animated_sprite.play("jump_start")
-	animation_locked = true
-
-func land():
-	animated_sprite.play("jump_end")
-	animation_locked = true
-
-func _on_animated_sprite_2d_animation_finished():
-	if(["jump_end", "jump_start"].has(animated_sprite.animation)):
-		animation_locked = false
-
 func attack():
-	animation_player.play("attack")
-	await animation_player.animation_finished
+	animation_locked = true
+	animated_sprite.play("attack")
+	await animated_sprite.animation_finished
 	animation_locked=false
 
-func shoot():
-	var bullet=bullet_node.instantiate()
-	bullet.position=global_position
-	bullet.direction=(get_global_mouse_position()-global_position).normalized()
+#func shoot():
+	#var bullet=bullet_node.instantiate()
+	#bullet.position=global_position
+	#bullet.direction=(get_global_mouse_position()-global_position).normalized()
 
-func _input(event):
-	if event.is_action("shoot"):
-		shoot()
+#func _input(event):
+	#if event.is_action("shoot"):
+		#shoot()

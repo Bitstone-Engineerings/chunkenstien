@@ -6,7 +6,7 @@ extends CharacterBody2D
 @onready var animated_sprite : AnimatedSprite2D = $AnimatedSprite2D
 @onready var fists:Area2D= $fists
 # Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+#var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var animation_locked : bool = false
 var direction : Vector2 = Vector2.ZERO
 var was_in_air : bool = false
@@ -23,20 +23,7 @@ func damage():
 	hp-=20
 
 func _physics_process(delta):
-	# Add the gravity.
-	if not is_on_floor():
-		velocity.y += gravity * delta
-		was_in_air = true
-	else:
-		if was_in_air == true:
-			land()
-			
-		was_in_air = false
 
-	# Handle Jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		# Normal jump from floor
-		jump()
 	if Input.is_action_just_pressed("attack"):
 		attack()
 
@@ -48,6 +35,10 @@ func _physics_process(delta):
 		velocity.x = direction.x * speed
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
+	if direction.y != 0 && animated_sprite.animation != "jump_end":
+		velocity.y = direction.y * speed
+	else:
+		velocity.y = move_toward(velocity.y, 0, speed)
 
 	move_and_slide()
 	update_animation()

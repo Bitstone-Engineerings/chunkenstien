@@ -666,4 +666,5 @@ position = Vector2(34.0625, 9.25)
 shape = SubResource("RectangleShape2D_7q43m")
 
 [connection signal="body_entered" from="player detection" to="Finite State Machines/idle" method="_on_player_detection_body_entered"]
+[connection signal="body_entered" from="sword" to="Finite State Machines/attack" method="_on_sword_body_entered"]
 [connection signal="body_entered" from="sword" to="sword" method="_on_body_entered"]

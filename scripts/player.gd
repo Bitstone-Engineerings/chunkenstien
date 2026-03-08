@@ -11,6 +11,8 @@ var animation_locked : bool = false
 var direction : Vector2 = Vector2.ZERO
 var was_in_air : bool = false
 
+signal facing_direction_changed(facing_right:bool)
+
 var hp:=100:
 	set(value):
 		hp=value
@@ -68,7 +70,8 @@ func update_facing_direction():
 		animated_sprite.flip_h = false
 	elif direction.x < 0:
 		animated_sprite.flip_h = true
-		
+		emit_signal("facing_direction_changed",!animated_sprite.flip_h)
+
 func jump():
 	velocity.y = jump_velocity
 	animated_sprite.play("jump_start")

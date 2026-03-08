@@ -702,5 +702,10 @@ script = ExtResource("12_pgnby")
 position = Vector2(34.0625, 9.25)
 shape = SubResource("RectangleShape2D_7q43m")
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.25
+one_shot = true
+
 [connection signal="body_entered" from="player detection" to="Finite State Machines/idle" method="_on_player_detection_body_entered"]
 [connection signal="body_entered" from="sword" to="sword" method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

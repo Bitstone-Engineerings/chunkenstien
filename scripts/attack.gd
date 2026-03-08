@@ -14,7 +14,6 @@ func combo():
 	var move_set=["1","1","2"]
 	for i in move_set:
 		await attack(i)
-		sword._on_body_entered()
 	combo()
 
 func transition():

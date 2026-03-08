@@ -2,8 +2,12 @@ extends CharacterBody2D
 
 @onready var player = get_parent().find_child("player")
 @onready var animated_sprite=$AnimatedSprite2D
+
 var direction: Vector2
 @onready var progress_bar = $ui/MarginContainer/VBoxContainer/ProgressBar
+@onready var timer:Timer=$Timer
+@export var knockback_speed:float= 100.0
+
 var health:=100:
 	set(value):
 		health=value
@@ -27,5 +31,10 @@ func _physics_process(delta):
 	velocity=direction.normalized()*80
 	move_and_collide(velocity*delta)
 
-func take_damage():
+func take_damage(knockback_direction:Vector2):
 	health-=5
+	velocity=knockback_speed*knockback_direction
+	timer.start()
+
+func _on_timer_timeout():
+	velocity=direction.normalized()*80

@@ -1,5 +1,6 @@
 extends State
 
+@onready var sword:Area2D= $"../../sword"
 func enter():
 	super.enter()
 	combo()
@@ -13,7 +14,7 @@ func combo():
 	var move_set=["1","1","2"]
 	for i in move_set:
 		await attack(i)
-	
+		sword._on_body_entered()
 	combo()
 
 func transition():

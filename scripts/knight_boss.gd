@@ -8,6 +8,8 @@ var direction: Vector2
 @onready var timer:Timer=$Timer
 @export var knockback_speed:float= 100.0
 
+signal facing_direction_changed(facing_right:bool)
+
 var health:=100:
 	set(value):
 		health=value
@@ -24,8 +26,10 @@ func _process(_delta):
 		direction=player.position-position
 	if direction.x<0:
 		animated_sprite.flip_h=true
+		emit_signal("facing_direction_changed",!animated_sprite.flip_h)
 	else:
 		animated_sprite.flip_h=false
+		emit_signal("facing_direction_changed",!animated_sprite.flip_h)
 
 func _physics_process(delta):
 	velocity=direction.normalized()*80

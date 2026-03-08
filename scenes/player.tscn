@@ -638,4 +638,8 @@ script = ExtResource("28_pf23h")
 facing_left_position = Vector2(-33, 0)
 facing_right_position = Vector2(33, 0)
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.25
+one_shot = true
+
 [connection signal="body_entered" from="fists" to="fists" method="_on_body_entered"]

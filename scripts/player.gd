@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var speed : float = 200.0
+@export var speed: float=200.0
 @export var jump_velocity : float = -150.0
 @export var bullet_node:PackedScene
 @onready var animated_sprite : AnimatedSprite2D = $AnimatedSprite2D
@@ -10,6 +10,8 @@ extends CharacterBody2D
 var animation_locked : bool = false
 var direction : Vector2 = Vector2.ZERO
 var was_in_air : bool = false
+@export var knockback_speed:float= 100.0
+@onready var timer:Timer=$Timer
 
 signal facing_direction_changed(facing_right:bool)
 
@@ -21,10 +23,12 @@ var hp:=100:
 			await animated_sprite.animation_finished
 			get_tree().reload_current_scene()
 
-func damage():
-	hp-=20
+func damage(knockback_direction:Vector2):
+	hp-=10
+	velocity=knockback_speed*knockback_direction
+	timer.start()
 
-func _physics_process(delta):
+func _physics_process(_delta):
 
 	if Input.is_action_just_pressed("attack") and not animation_locked:
 		attack()
@@ -56,14 +60,15 @@ func update_animation():
 func update_facing_direction():
 	if direction.x > 0:
 		animated_sprite.flip_h = false
+		emit_signal("facing_direction_changed",!animated_sprite.flip_h)
 	elif direction.x < 0:
 		animated_sprite.flip_h = true
 		emit_signal("facing_direction_changed",!animated_sprite.flip_h)
 
 func attack():
 	animation_locked = true
-	animated_sprite.play("attack")
-	await animated_sprite.animation_finished
+	animation_player.play("attack")
+	await animation_player.animation_finished
 	animation_locked=false
 
 #func shoot():

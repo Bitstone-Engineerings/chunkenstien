@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://clpyk5iyooqyu"]
+[gd_scene load_steps=29 format=3 uid="uid://clpyk5iyooqyu"]
 
 [ext_resource type="Texture2D" uid="uid://yl37n0g604c4" path="res://assets/chunkenstien_no_legs.png" id="1_f5bqu"]
 [ext_resource type="Script" uid="uid://bacto5wmg0lts" path="res://scripts/body.gd" id="1_lgxe7"]
@@ -32,6 +32,10 @@ region = Rect2(2340, 0, 390, 390)
 [sub_resource type="AtlasTexture" id="AtlasTexture_02g5e"]
 atlas = ExtResource("1_f5bqu")
 region = Rect2(2730, 0, 390, 390)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8h7mj"]
+atlas = ExtResource("1_f5bqu")
+region = Rect2(0, 0, 390, 390)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tc5qq"]
 atlas = ExtResource("1_f5bqu")
@@ -103,6 +107,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_8h7mj")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_tc5qq")
 }],
 "loop": true,
@@ -152,6 +164,33 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Animation" id="Animation_psnx4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"attack"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
 [sub_resource type="Animation" id="Animation_8h7mj"]
 resource_name = "attack"
 length = 1.2000201
@@ -181,33 +220,6 @@ tracks/1/keys = {
 "values": [0, 1, 2, 3, 4, 5]
 }
 
-[sub_resource type="Animation" id="Animation_psnx4"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"attack"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0iaya"]
 _data = {
 &"RESET": SubResource("Animation_psnx4"),
@@ -219,12 +231,13 @@ radius = 75.0
 height = 246.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ctqij"]
-size = Vector2(103, 178.5)
+size = Vector2(111.5, 219.25)
 
 [node name="body" type="CharacterBody2D"]
 script = ExtResource("1_lgxe7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_0qxxb")
 animation = &"attack"
 
@@ -234,7 +247,8 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-16, -83)
+position = Vector2(-5, -22)
+scale = Vector2(0.25, 0.25)
 shape = SubResource("CapsuleShape2D_k6tsx")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -247,11 +261,12 @@ monitoring = false
 script = ExtResource("2_veluv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="smack"]
-position = Vector2(120, -62)
+position = Vector2(30, -18)
+scale = Vector2(0.25, 0.25)
 shape = SubResource("RectangleShape2D_ctqij")
 script = ExtResource("4_glwu3")
-facing_left_position = Vector2(-150, -62)
-facing_right_position = Vector2(120, -62)
+facing_left_position = Vector2(-40, -18)
+facing_right_position = Vector2(30, -18)
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.25

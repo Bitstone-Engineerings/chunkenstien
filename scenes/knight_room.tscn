@@ -5,7 +5,7 @@
 
 [sub_resource type="PackedScene" id="PackedScene_bpcqn"]
 
-[node name="boss room" type="Node2D"]
+[node name="knight room" type="Node2D"]
 
 [node name="knight boss" parent="." instance=ExtResource("1_3n20u")]
 position = Vector2(590, 284)

@@ -1,5 +1,6 @@
 extends State
 
+@onready var teeth:Area2D=$"../../teeth"
 func enter():
 	super.enter()
 	attack()

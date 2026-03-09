@@ -17,7 +17,7 @@ var health:=100:
 			progress_bar.value = health
 		if value<=0:
 			progress_bar.visible=false
-			find_child("Finite State Machines").change_state("death")
+			find_child("rat state machines").change_state("death")
 func _ready():
 	set_physics_process(false)
 

@@ -13,11 +13,9 @@ config_version=5
 config/name="Chunkenstien"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
-
-
-
 window/size/viewport_width=1280
 window/size/viewport_height=720
+
 [input]
 
 up={
@@ -63,4 +61,3 @@ shoot={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
-

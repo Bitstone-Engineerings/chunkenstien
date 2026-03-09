@@ -17,7 +17,7 @@ var health:=100:
 			progress_bar.value = health
 		if value<=0:
 			progress_bar.visible=false
-			find_child("Finite State Machines").change_state("death")
+			find_child("king state machines").change_state("death")
 func _ready():
 	set_physics_process(false)
 
@@ -32,13 +32,13 @@ func _process(_delta):
 		emit_signal("facing_direction_changed",!animated_sprite.flip_h)
 
 func _physics_process(delta):
-	velocity=direction.normalized()*80
+	velocity=direction.normalized()*40
 	move_and_collide(velocity*delta)
 
 func take_damage(knockback_direction:Vector2):
-	health-=10
+	health-=5
 	velocity=knockback_speed*knockback_direction
 	timer.start()
 
 func _on_timer_timeout():
-	velocity=direction.normalized()*80
+	velocity=direction.normalized()*40

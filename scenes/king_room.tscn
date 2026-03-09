@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dodutlpseu6ab"]
+
+[ext_resource type="PackedScene" uid="uid://c2x8smxqyv10x" path="res://scenes/king_boss.tscn" id="1_ikp8q"]
+[ext_resource type="PackedScene" uid="uid://p5gc6erx210k" path="res://scenes/player.tscn" id="2_lel76"]
+
+[node name="king room" type="Node2D"]
+
+[node name="king boss" parent="." instance=ExtResource("1_ikp8q")]
+
+[node name="player" parent="." instance=ExtResource("2_lel76")]
+position = Vector2(853, 315)

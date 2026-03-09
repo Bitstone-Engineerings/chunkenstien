@@ -1,11 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://c27on1bfskduu"]
 
 [ext_resource type="PackedScene" uid="uid://n64nlgdfiaef" path="res://scenes/rat_boss.tscn" id="1_12ud5"]
-[ext_resource type="PackedScene" uid="uid://p5gc6erx210k" path="res://scenes/player.tscn" id="2_q33nj"]
+[ext_resource type="PackedScene" uid="uid://dfxlagc1u86qx" path="res://scenes/head.tscn" id="2_12ud5"]
 
 [node name="rat room" type="Node2D"]
 
 [node name="rat boss" parent="." instance=ExtResource("1_12ud5")]
 
-[node name="player" parent="." instance=ExtResource("2_q33nj")]
-position = Vector2(888, 328)
+[node name="head" parent="." instance=ExtResource("2_12ud5")]
+position = Vector2(-55, 324)

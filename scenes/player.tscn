@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=3 uid="uid://p5gc6erx210k"]
+[gd_scene load_steps=71 format=3 uid="uid://p5gc6erx210k"]
 
 [ext_resource type="Script" uid="uid://pfj7f63abido" path="res://scripts/player.gd" id="1_3vyb7"]
 [ext_resource type="Texture2D" uid="uid://dsbe51ahc22rl" path="res://assets/cultist_priest_attack_1.png" id="2_qfm1y"]
@@ -13,8 +13,6 @@
 [ext_resource type="Texture2D" uid="uid://dd8r3cyppx5sa" path="res://assets/cultist_priest_idle_3.png" id="9_l71n6"]
 [ext_resource type="Texture2D" uid="uid://bbq4mgggmdthj" path="res://assets/cultist_priest_die_3.png" id="9_pf23h"]
 [ext_resource type="Texture2D" uid="uid://dhb16lub4fwsb" path="res://assets/cultist_priest_die_5.png" id="10_dt7fs"]
-[ext_resource type="Texture2D" uid="uid://bip6br2r8v5gf" path="res://assets/cultist_priest_idle_4.png" id="10_ke2ow"]
-[ext_resource type="Texture2D" uid="uid://c1faxs235b748" path="res://assets/cultist_priest_idle_5.png" id="11_ujl30"]
 [ext_resource type="Texture2D" uid="uid://blocdf3eq2mw1" path="res://assets/cultist_priest_die_6.png" id="11_wqfne"]
 [ext_resource type="Texture2D" uid="uid://cmbre0jgp602m" path="res://assets/cultist_priest_walk_1.png" id="12_31cv2"]
 [ext_resource type="Texture2D" uid="uid://twfxqo44syy7" path="res://assets/cultist_priest_takehit_1.png" id="12_wnwbv"]
@@ -24,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://dgncmcpyppa4i" path="res://assets/cultist_priest_walk_3.png" id="14_dt7fs"]
 [ext_resource type="Texture2D" uid="uid://dvyi20ihwx2uf" path="res://assets/cultist_priest_takehit_4.png" id="15_md1ol"]
 [ext_resource type="Texture2D" uid="uid://bxs5kjtig08nr" path="res://assets/cultist_priest_walk_4.png" id="15_wqfne"]
+[ext_resource type="Texture2D" uid="uid://13g25m5y1nwk" path="res://assets/chunkenstien-idle.png" id="16_31cv2"]
 [ext_resource type="Texture2D" uid="uid://dday25qo1bg4p" path="res://assets/cultist_priest_walk_5.png" id="16_wnwbv"]
 [ext_resource type="Texture2D" uid="uid://cj1axlvfcupe6" path="res://assets/cultist_priest_walk_6.png" id="17_gl8cc"]
 [ext_resource type="Script" uid="uid://hsuafvy604" path="res://scripts/fists.gd" id="27_31cv2"]
@@ -88,24 +87,12 @@ atlas = ExtResource("15_md1ol")
 region = Rect2(0, 0, 200, 200)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t4otl"]
-atlas = ExtResource("7_a38lo")
-region = Rect2(0, 0, 200, 200)
+atlas = ExtResource("16_31cv2")
+region = Rect2(0, 0, 390, 390)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j2b1d"]
-atlas = ExtResource("8_4ni07")
-region = Rect2(0, 0, 200, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cs1tg"]
-atlas = ExtResource("9_l71n6")
-region = Rect2(0, 0, 200, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2dvfe"]
-atlas = ExtResource("10_ke2ow")
-region = Rect2(0, 0, 200, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_giy8y"]
-atlas = ExtResource("11_ujl30")
-region = Rect2(0, 0, 200, 200)
+atlas = ExtResource("16_31cv2")
+region = Rect2(390, 0, 390, 390)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ujl30"]
 atlas = ExtResource("6_i4ail")
@@ -224,19 +211,10 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_j2b1d")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cs1tg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2dvfe")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_giy8y")
 }],
 "loop": true,
 "name": &"idle",
-"speed": 5.0
+"speed": 2.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -273,6 +251,11 @@ animations = [{
 "loop": true,
 "name": &"jump_start",
 "speed": 2.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -616,10 +599,12 @@ libraries = {
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(1, 1)
 shape = SubResource("CapsuleShape2D_qhqgy")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+visible = false
 process_callback = 0
 position_smoothing_enabled = true
 drag_horizontal_enabled = true

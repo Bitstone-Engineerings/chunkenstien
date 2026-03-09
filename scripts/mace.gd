@@ -5,7 +5,7 @@ extends Area2D
 
 func _ready():
 	monitoring=false
-	character.connect("facing_direction_changed",_on_knight_boss_facing_diection_changed)
+	character.connect("facing_direction_changed",_on_king_boss_facing_diection_changed)
 
 func _on_body_entered(body:CharacterBody2D ):
 	var direction_to_enemy=(body.global_position-get_parent().global_position)
@@ -17,7 +17,7 @@ func _on_body_entered(body:CharacterBody2D ):
 	else:
 		body.damage(Vector2.ZERO)
 
-func _on_knight_boss_facing_diection_changed(facing_right:bool):
+func _on_king_boss_facing_diection_changed(facing_right:bool):
 	if(facing_right):
 		fcs.position=fcs.facing_right_position
 	else:

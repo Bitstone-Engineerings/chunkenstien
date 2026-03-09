@@ -3,7 +3,7 @@ extends Area2D
 @onready var fcs:CollisionShape2D=$CollisionShape2D
 func _ready():
 	monitoring=false
-	player.connect("facing_direction_changed",_on_player_facing_diection_changed)
+	player.connect("facing_direction_changed",_on_head_facing_diection_changed)
 
 func _on_body_entered(body: CharacterBody2D):
 	var direction_to_enemy=(body.global_position-get_parent().global_position)
@@ -15,7 +15,7 @@ func _on_body_entered(body: CharacterBody2D):
 	else:
 		body.take_damage(Vector2.ZERO)
 
-func _on_player_facing_diection_changed(facing_right:bool):
+func _on_head_facing_diection_changed(facing_right:bool):
 	if(facing_right):
 		fcs.position=fcs.facing_right_position
 	else:

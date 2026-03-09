@@ -9,7 +9,7 @@ var player_entered:bool=false:
 		collision.set_deferred("disabled",value)
 		progress_bar.set_deferred("visible",value)
 
-func _on_player_detection_body_entered(_body):
+func _on_player_detection_body_entered(body:CharacterBody2D):
 	player_entered=true
 
 func transition():

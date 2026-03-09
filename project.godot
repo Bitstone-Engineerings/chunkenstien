@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="Chunkenstien"
+run/main_scene="uid://bw3x6dohb4ev0"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 window/size/viewport_width=1280

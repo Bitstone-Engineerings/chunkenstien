@@ -557,4 +557,4 @@ tile_set = SubResource("TileSet_sphmq")
 position = Vector2(550, 350)
 
 [node name="head" parent="." instance=ExtResource("2_12ud5")]
-position = Vector2(-55, 324)
+position = Vector2(-56, 357)

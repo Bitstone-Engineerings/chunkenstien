@@ -271,5 +271,3 @@ facing_right_position = Vector2(30, -18)
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.25
 one_shot = true
-
-[connection signal="body_entered" from="smack" to="smack" method="_on_body_entered"]

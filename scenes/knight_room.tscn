@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://djon86s80wad3"]
+[gd_scene load_steps=14 format=3 uid="uid://djon86s80wad3"]
 
 [ext_resource type="Texture2D" uid="uid://b3vrhhn482k4f" path="res://assets/1.png" id="1_0uhce"]
 [ext_resource type="PackedScene" uid="uid://gyp85ycwc45r" path="res://scenes/knight_boss.tscn" id="1_yauuf"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cu4os5a55lvjh" path="res://assets/5.png" id="4_do56c"]
 [ext_resource type="Texture2D" uid="uid://d22mqf2jjxyxf" path="res://assets/6.png" id="5_doaum"]
 [ext_resource type="Texture2D" uid="uid://cegvwkdahlbbo" path="res://images/tilemap/dark_town tilemap (2).png" id="6_babxr"]
+[ext_resource type="Script" uid="uid://cbgkldt7h0c7g" path="res://scripts/knight_boss.gd" id="6_do56c"]
 [ext_resource type="Texture2D" uid="uid://cclfgko3fpp2g" path="res://images/tilemap/village tilemap (2).png" id="7_3kh28"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o7w0p"]
@@ -2729,6 +2730,7 @@ motion_mirroring = Vector2(3456, 0)
 position = Vector2(838, -526)
 scale = Vector2(6, 6)
 texture = ExtResource("4_do56c")
+script = ExtResource("6_do56c")
 
 [node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0.6, 0.6)

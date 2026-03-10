@@ -1,6 +1,7 @@
 extends Area2D
 @onready var player:CharacterBody2D=$".."
 @onready var fcs:CollisionShape2D=$CollisionShape2D
+
 func _ready():
 	monitoring=false
 	player.connect("facing_direction_changed",_on_player_facing_diection_changed)
